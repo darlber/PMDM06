@@ -1,8 +1,10 @@
 package com.example.pmdm06.ArrayAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pmdm06.R;
+import com.example.pmdm06.Sensors.Accelerometer;
+import com.example.pmdm06.Sensors.LinearAcceleration;
 
 import java.util.List;
 
@@ -53,17 +57,38 @@ public class SensorAdapter extends BaseAdapter {
             sensorStatus.setImageResource(R.drawable.grey_circle);
         }
         convertView.setOnClickListener(v -> {
-            boolean isSensorAvailable = sensorAvailable(position);  //Verificar disponibilidad
-            String message = isSensorAvailable ? "Sensor disponible" : "Sensor no disponible";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            String sensorNameText = sensorNames.get(position);
+            Log.d("SensorDebug", "Clicked sensor: " + sensorNameText);
+            boolean isSensorAvailable = sensorAvailable(position);
+
+            if (!isSensorAvailable) {
+                String message = "Sensor no disponible";
+                Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                return; // Si no está disponible, no hacer nada más
+            }
+
+            // Si el sensor está disponible, se abre el intent
+            Intent intent;
+            if ("Aceleración Lineal".equals(sensorNameText)) {
+                intent = new Intent(context, LinearAcceleration.class);
+            } else if ("Acelerómetro".equals(sensorNameText)) {
+                intent = new Intent(context, Accelerometer.class);
+            } else {
+                return; // Evita abrir una actividad incorrecta
+            }
+            intent.putExtra("sensor_name", sensorNames.get(position));
+            context.startActivity(intent);
         });
+        ;
 
 
         return convertView;
     }
+
     private boolean sensorAvailable(int position) {
         return sensorManager.getDefaultSensor(sensorTypes.get(position)) != null;
     }
+
     @Override
     public int getCount() {
         return sensorNames.size();

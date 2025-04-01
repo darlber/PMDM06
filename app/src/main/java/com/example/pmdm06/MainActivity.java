@@ -1,13 +1,9 @@
 package com.example.pmdm06;
 
 import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pmdm06.ArrayAdapter.SensorAdapter;
@@ -19,7 +15,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private GridView sensorGrid;
-    private SensorManager sensorManager;
     private List<String> sensorNames;
     private List<Integer> sensorTypes;
 
@@ -29,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sensorGrid = findViewById(R.id.sensor_grid);
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        getSystemService(SENSOR_SERVICE);
 
         sensorNames = new ArrayList<>();
         sensorTypes = new ArrayList<>();

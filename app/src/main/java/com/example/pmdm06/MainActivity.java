@@ -1,7 +1,10 @@
 package com.example.pmdm06;
 
+import android.content.Context;
 import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sensorGrid = findViewById(R.id.sensor_grid);
-        getSystemService(SENSOR_SERVICE);
+        SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         sensorNames = new ArrayList<>();
         sensorTypes = new ArrayList<>();
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity {
         addSensor(Sensor.TYPE_ROTATION_VECTOR, "Vector de Rotación");
         addSensor(Sensor.TYPE_TEMPERATURE, "Temperatura del Dispositivo");
 
-        Collections.sort(sensorNames);
+        // Después de definir tus sensores, verifica cuáles están disponibles
+        for (int i = 0; i < sensorTypes.size(); i++) {
+            Sensor sensor = sensorManager.getDefaultSensor(sensorTypes.get(i));
+            Log.d("SensorCheck", sensorNames.get(i) + " available: " + (sensor != null));
+        }
         // Adaptador personalizado para el GridView
         SensorAdapter adapter = new SensorAdapter(this, sensorNames, sensorTypes);
         sensorGrid.setAdapter(adapter);

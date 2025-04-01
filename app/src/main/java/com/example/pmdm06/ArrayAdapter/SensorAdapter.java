@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.pmdm06.R;
 import com.example.pmdm06.Sensors.Accelerometer;
+import com.example.pmdm06.Sensors.Gravity;
 import com.example.pmdm06.Sensors.LinearAcceleration;
 
 import java.util.List;
@@ -73,7 +74,28 @@ public class SensorAdapter extends BaseAdapter {
                 intent = new Intent(context, LinearAcceleration.class);
             } else if ("Acelerómetro".equals(sensorNameText)) {
                 intent = new Intent(context, Accelerometer.class);
-            } else {
+            } else if ("Gravedad".equals(sensorNameText)) {
+                intent = new Intent(context, Gravity.class);
+//            } else if ("Giroscopio".equals(sensorNameText)) {
+//                intent = new Intent(context, Gyroscope.class);
+//            } else if ("Sensor de Luz Ambiental".equals(sensorNameText)) {
+//                intent = new Intent(context, LightSensor.class);
+//            } else if ("Brújula".equals(sensorNameText)) {
+//                intent = new Intent(context, MagneticField.class);
+//            } else if ("Sensor de Proximidad".equals(sensorNameText)) {
+//                intent = new Intent(context, ProximitySensor.class);
+//            } else if ("Temperatura del Dispositivo".equals(sensorNameText)) {
+//                intent = new Intent(context, TemperatureSensor.class);
+//            } else if ("Temperatura Ambiental".equals(sensorNameText)) {
+//                intent = new Intent(context, AmbientTemperature.class);
+//            } else if ("Humedad Relativa".equals(sensorNameText)) {
+//                intent = new Intent(context, RelativeHumidity.class);
+//            } else if ("Sensor de Presión".equals(sensorNameText)) {
+//                intent = new Intent(context, PressureSensor.class);
+//            } else if ("Vector de Rotación".equals(sensorNameText)) {
+//                intent = new Intent(context, RotationVector.class);
+            }
+            else {
                 return; // Evita abrir una actividad incorrecta
             }
             intent.putExtra("sensor_name", sensorNames.get(position));

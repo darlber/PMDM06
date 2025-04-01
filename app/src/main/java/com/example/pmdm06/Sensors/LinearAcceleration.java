@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pmdm06.R;
 
-//https://developer.android.com/develop/sensors-and-location/sensors/sensors_motion?hl=es-419
+
 public class LinearAcceleration extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
@@ -64,6 +64,7 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
+
 }
 
 

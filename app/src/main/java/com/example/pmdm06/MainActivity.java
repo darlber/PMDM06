@@ -12,12 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pmdm06.ArrayAdapter.SensorAdapter;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private GridView sensorGrid;
     private List<String> sensorNames;
     private List<Integer> sensorTypes;
 
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sensorGrid = findViewById(R.id.sensor_grid);
+        GridView sensorGrid = findViewById(R.id.sensor_grid);
         SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         sensorNames = new ArrayList<>();

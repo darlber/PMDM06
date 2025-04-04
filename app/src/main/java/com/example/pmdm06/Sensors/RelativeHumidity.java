@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pmdm06.R;
 
-public class LinearAcceleration extends AppCompatActivity implements SensorEventListener {
+public class RelativeHumidity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
-    private Sensor linearAccelerationSensor;
+    private Sensor humiditySensor;
     private TextView sensorInfo, sensorDescription;
 
     @Override
@@ -25,15 +25,15 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
         setContentView(R.layout.activity_sensor);
 
         sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la aceleración en los ejes X, Y y Z sin incluir la gravedad.");
+        sensorDescription.setText("Mide la humedad relativa del ambiente.");
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
-            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-            if (linearAccelerationSensor == null) {
-                Toast.makeText(this, "Sensor de aceleración lineal no disponible", Toast.LENGTH_SHORT).show();
+            humiditySensor = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
+            if (humiditySensor == null) {
+                Toast.makeText(this, "Sensor de humedad relativa no disponible", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -41,8 +41,8 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
     @Override
     protected void onResume() {
         super.onResume();
-        if (linearAccelerationSensor != null) {
-            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_UI);
+        if (humiditySensor != null) {
+            sensorManager.registerListener(this, humiditySensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -54,13 +54,9 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
-
-            String data = String.format("X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²", x, y, z);
-            sensorInfo.setText(data);
+        if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
+            float humidity = event.values[0];
+            sensorInfo.setText(String.format("Humedad Relativa: %.2f %%", humidity));
         }
     }
 

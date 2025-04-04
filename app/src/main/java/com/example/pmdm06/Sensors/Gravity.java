@@ -16,20 +16,17 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor gravitySensor;
-    private TextView gravityXText, gravityYText, gravityZText;
+    private TextView sensorInfo, sensorDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gravity);
+        setContentView(R.layout.activity_sensor);
 
-        // Obtener las referencias de los TextViews donde se mostrarán los valores
-        // Inicializar los TextViews
-        gravityXText = findViewById(R.id.gravity_x);
-        gravityYText = findViewById(R.id.gravity_y);
-        gravityZText = findViewById(R.id.gravity_z);
+        sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText("Mide la fuerza de la gravedad sobre el dispositivo.");
 
-        // Inicializar el SensorManager
+        sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
         // Obtener el sensor de gravedad
@@ -68,9 +65,8 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
             float gravityZ = event.values[2];
 
             // Formatear los valores con 2 decimales y mostrarlos en los TextViews
-            gravityXText.setText(String.format("Gravedad X: %.2f", gravityX));
-            gravityYText.setText(String.format("Gravedad Y: %.2f", gravityY));
-            gravityZText.setText(String.format("Gravedad Z: %.2f", gravityZ));
+            String gravityData = String.format("Gravedad X: %.2f\nGravedad Y: %.2f\nGravedad Z: %.2f", gravityX, gravityY, gravityZ);
+            sensorInfo.setText(gravityData);
         }
     }
 

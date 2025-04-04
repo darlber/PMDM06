@@ -32,21 +32,21 @@ public class MainActivity extends AppCompatActivity {
 
         // Definir los 13 sensores comunes
         //https://developer.android.com/develop/sensors-and-location/sensors/sensors_overview?hl=es-419
-        addSensor(Sensor.TYPE_ACCELEROMETER, "Acelerómetro");
-        addSensor(Sensor.TYPE_AMBIENT_TEMPERATURE, "Temperatura Ambiental");
-        addSensor(Sensor.TYPE_GRAVITY, "Gravedad");
-        addSensor(Sensor.TYPE_GYROSCOPE, "Giroscopio");
-        addSensor(Sensor.TYPE_LIGHT, "Sensor de Luz Ambiental");
         addSensor(Sensor.TYPE_LINEAR_ACCELERATION, "Aceleración Lineal");
+        addSensor(Sensor.TYPE_ACCELEROMETER, "Acelerómetro");
         addSensor(Sensor.TYPE_MAGNETIC_FIELD, "Brújula");
+        addSensor(Sensor.TYPE_GYROSCOPE, "Giroscopio");
+        addSensor(Sensor.TYPE_GRAVITY, "Gravedad");
+        addSensor(Sensor.TYPE_RELATIVE_HUMIDITY, "Humedad Relativa");
+        addSensor(Sensor.TYPE_LIGHT, "Sensor de Luz Ambiental");
+        addSensor(Sensor.TYPE_AMBIENT_TEMPERATURE, "Temperatura Ambiental");
         addSensor(Sensor.TYPE_ORIENTATION, "Orientación (Obsoleto)");
         addSensor(Sensor.TYPE_PRESSURE, "Sensor de Presión");
         addSensor(Sensor.TYPE_PROXIMITY, "Sensor de Proximidad");
-        addSensor(Sensor.TYPE_RELATIVE_HUMIDITY, "Humedad Relativa");
-        addSensor(Sensor.TYPE_ROTATION_VECTOR, "Vector de Rotación");
         addSensor(Sensor.TYPE_TEMPERATURE, "Temperatura del Dispositivo");
+        addSensor(Sensor.TYPE_ROTATION_VECTOR, "Vector de Rotación");
 
-        // Después de definir tus sensores, verifica cuáles están disponibles
+        // Después de definir sensores, verifica cuáles están disponibles
         for (int i = 0; i < sensorTypes.size(); i++) {
             Sensor sensor = sensorManager.getDefaultSensor(sensorTypes.get(i));
             Log.d("SensorCheck", sensorNames.get(i) + " available: " + (sensor != null));
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
-        /* LISTADO DE SENSORES
+        /* LISTADO DE SENSORES mi dispositivo
     SAR ADUX1050
     sns_tilt
     pedometer

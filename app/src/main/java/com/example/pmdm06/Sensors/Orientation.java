@@ -13,10 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pmdm06.R;
 
-public class LinearAcceleration extends AppCompatActivity implements SensorEventListener {
+public class Orientation extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
-    private Sensor linearAccelerationSensor;
+    private Sensor orientationSensor;
     private TextView sensorInfo, sensorDescription;
 
     @Override
@@ -25,15 +25,15 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
         setContentView(R.layout.activity_sensor);
 
         sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la aceleración en los ejes X, Y y Z sin incluir la gravedad.");
+        sensorDescription.setText("Mide la orientación del dispositivo.");
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
-            linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-            if (linearAccelerationSensor == null) {
-                Toast.makeText(this, "Sensor de aceleración lineal no disponible", Toast.LENGTH_SHORT).show();
+            orientationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+            if (orientationSensor == null) {
+                Toast.makeText(this, "Sensor de orientación no disponible", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -41,8 +41,8 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
     @Override
     protected void onResume() {
         super.onResume();
-        if (linearAccelerationSensor != null) {
-            sensorManager.registerListener(this, linearAccelerationSensor, SensorManager.SENSOR_DELAY_UI);
+        if (orientationSensor != null) {
+            sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
 
@@ -54,12 +54,12 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_LINEAR_ACCELERATION) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+        if (event.sensor.getType() == Sensor.TYPE_ORIENTATION) {
+            float azimuth = event.values[0];
+            float pitch = event.values[1];
+            float roll = event.values[2];
 
-            String data = String.format("X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²", x, y, z);
+            String data = String.format("Azimut: %.2f°\nInclinación: %.2f°\nRotación: %.2f°", azimuth, pitch, roll);
             sensorInfo.setText(data);
         }
     }

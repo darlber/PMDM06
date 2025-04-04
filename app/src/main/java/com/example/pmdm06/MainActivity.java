@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
-TODO string.xml
 TODO más bonito
  */
 

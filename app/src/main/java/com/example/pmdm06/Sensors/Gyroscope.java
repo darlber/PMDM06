@@ -39,7 +39,7 @@ public class Gyroscope extends AppCompatActivity implements SensorEventListener 
     protected void onResume() {
         super.onResume();
         if (gyroscope != null) {
-            sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

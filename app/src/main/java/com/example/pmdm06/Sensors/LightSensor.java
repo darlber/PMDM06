@@ -39,7 +39,7 @@ public class LightSensor extends AppCompatActivity implements SensorEventListene
     protected void onResume() {
         super.onResume();
         if (lightSensor != null) {
-            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

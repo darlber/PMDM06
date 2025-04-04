@@ -39,7 +39,7 @@ public class Orientation extends AppCompatActivity implements SensorEventListene
     protected void onResume() {
         super.onResume();
         if (orientationSensor != null) {
-            sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, orientationSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

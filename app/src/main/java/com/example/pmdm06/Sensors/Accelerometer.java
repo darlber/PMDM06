@@ -57,7 +57,7 @@ public class Accelerometer extends AppCompatActivity implements SensorEventListe
         float y = event.values[1];
         float z = event.values[2];
 
-        String data = String.format(getString(R.string.accel_valores), x, y, z);
+        String data = String.format(getString(R.string.accel_values), x, y, z);
         sensorInfo.setText(data);
     }
 

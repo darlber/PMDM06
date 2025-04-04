@@ -39,7 +39,7 @@ public class MagneticField extends AppCompatActivity implements SensorEventListe
     protected void onResume() {
         super.onResume();
         if (magneticFieldSensor != null) {
-            sensorManager.registerListener(this, magneticFieldSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, magneticFieldSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

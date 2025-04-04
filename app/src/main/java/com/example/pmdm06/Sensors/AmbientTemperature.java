@@ -51,7 +51,7 @@ public class AmbientTemperature extends AppCompatActivity implements SensorEvent
     @Override
     public void onSensorChanged(SensorEvent event) {
         float temperature = event.values[0];
-        tempText.setText(String.format(getString(R.string.temp_valores), temperature));
+        tempText.setText(String.format(getString(R.string.ambient_temp_values), temperature));
     }
 
     @Override

@@ -45,7 +45,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
         // Register the listener for the rotation vector sensor
         if (rotationVectorSensor != null) {
             // Using SENSOR_DELAY_NORMAL is generally recommended unless high precision is needed.
-            sensorManager.registerListener(this, rotationVectorSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            sensorManager.registerListener(this, rotationVectorSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
 

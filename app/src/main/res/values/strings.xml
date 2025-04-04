@@ -1,15 +1,11 @@
 <resources>
-    <string name="app_name">PMDM06</string>
-    <!-- Descripción del sensor -->
-    <string name="sensor_description">Descripción del sensor</string>
+    <string name="app_name">Sensores</string>
 
-    <!-- Información del sensor -->
-    <string name="sensor_info">Información adicional del sensor</string>
     <string name="aceleracion_desc">Mide la aceleración total, incluyendo la gravedad.</string>
     <string name="sensor_unavailable">Sensor no disponible</string>
-    <string name="accel_valores">X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²</string>
+    <string name="accel_values">X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²</string>
     <string name="temp__desc">Mide la temperatura ambiental.</string>
-    <string name="temp_valores">Temperatura: %.2f °C</string>
+    <string name="ambient_temp_values">Temperatura: %.2f °C</string>
     <string name="gravity_desc">Mide la fuerza de la gravedad sobre el dispositivo.</string>
     <string name="gravity_values">Gravedad X: %.2f\nGravedad Y: %.2f\nGravedad Z: %.2f</string>
     <string name="gyro_desc">Mide la velocidad de rotación del dispositivo.</string>

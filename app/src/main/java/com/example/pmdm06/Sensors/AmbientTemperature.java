@@ -17,7 +17,6 @@ public class AmbientTemperature extends AppCompatActivity implements SensorEvent
     private SensorManager sensorManager;
     private Sensor tempSensor;
     private TextView tempText;
-    private TextView sensorDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +24,9 @@ public class AmbientTemperature extends AppCompatActivity implements SensorEvent
         setContentView(R.layout.activity_sensor);
 
         tempText = findViewById(R.id.sensor_info);
-        sensorDescription = findViewById(R.id.sensor_description);
+        TextView sensorDescription = findViewById(R.id.sensor_description);
 
-        sensorDescription.setText("Mide la temperatura ambiental.");
+        sensorDescription.setText(R.string.temp__desc);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
@@ -52,7 +51,7 @@ public class AmbientTemperature extends AppCompatActivity implements SensorEvent
     @Override
     public void onSensorChanged(SensorEvent event) {
         float temperature = event.values[0];
-        tempText.setText(String.format("Temperatura: %.2f °C", temperature));
+        tempText.setText(String.format(getString(R.string.temp_valores), temperature));
     }
 
     @Override

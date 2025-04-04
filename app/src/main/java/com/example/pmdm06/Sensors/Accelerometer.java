@@ -15,7 +15,7 @@ import com.example.pmdm06.R;
 public class Accelerometer extends AppCompatActivity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor sensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +23,15 @@ public class Accelerometer extends AppCompatActivity implements SensorEventListe
         setContentView(R.layout.activity_sensor);
 
         sensorInfo = findViewById(R.id.sensor_info);
-        sensorDescription = findViewById(R.id.sensor_description);
+        TextView sensorDescription = findViewById(R.id.sensor_description);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        sensorDescription.setText("Mide la aceleración total, incluyendo la gravedad.");
+        sensorDescription.setText(R.string.aceleracion_desc);
 
         if (sensor == null) {
-            sensorInfo.setText("Sensor no disponible");
+            sensorInfo.setText(R.string.sensor_unavailable);
         }
     }
 
@@ -57,7 +57,7 @@ public class Accelerometer extends AppCompatActivity implements SensorEventListe
         float y = event.values[1];
         float z = event.values[2];
 
-        String data = String.format("X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²", x, y, z);
+        String data = String.format(getString(R.string.accel_valores), x, y, z);
         sensorInfo.setText(data);
     }
 

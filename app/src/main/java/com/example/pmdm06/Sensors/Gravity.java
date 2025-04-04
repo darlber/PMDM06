@@ -6,7 +6,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,15 +15,15 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor gravitySensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la fuerza de la gravedad sobre el dispositivo.");
+        TextView sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText(R.string.gravity_desc);
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -32,10 +31,6 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
         // Obtener el sensor de gravedad
         gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
-        if (gravitySensor == null) {
-            // Si el sensor no está disponible, mostrar un mensaje
-            Toast.makeText(this, "Sensor de gravedad no disponible", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -65,7 +60,7 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
             float gravityZ = event.values[2];
 
             // Formatear los valores con 2 decimales y mostrarlos en los TextViews
-            String gravityData = String.format("Gravedad X: %.2f\nGravedad Y: %.2f\nGravedad Z: %.2f", gravityX, gravityY, gravityZ);
+            String gravityData = String.format(getString(R.string.gravity_values), gravityX, gravityY, gravityZ);
             sensorInfo.setText(gravityData);
         }
     }

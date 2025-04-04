@@ -14,6 +14,11 @@ import com.example.pmdm06.ArrayAdapter.SensorAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+TODO string.xml
+TODO más bonito
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     private List<String> sensorNames;

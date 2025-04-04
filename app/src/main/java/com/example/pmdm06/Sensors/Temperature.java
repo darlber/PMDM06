@@ -26,15 +26,12 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
         sensorDescription = findViewById(R.id.sensor_description);
         sensorInfo = findViewById(R.id.sensor_info);
 
-        sensorDescription.setText("Temperatura interna del dispositivo");
+        sensorDescription.setText(R.string.temp_desc);
 
         // Inicializar el SensorManager y obtener el sensor de temperatura
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         temperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
 
-        if (temperatureSensor == null) {
-            sensorInfo.setText("Sensor no disponible");
-        }
     }
 
     @Override
@@ -60,7 +57,7 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
         if (event.sensor.getType() == Sensor.TYPE_TEMPERATURE) {
             // Mostrar la temperatura en la interfaz con 2 decimales
             float temperature = event.values[0];
-            sensorInfo.setText(String.format("%.2f °C", temperature));
+            sensorInfo.setText(String.format(getString(R.string.temp_values), temperature));
         }
     }
 

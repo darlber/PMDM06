@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,24 +16,22 @@ public class Orientation extends AppCompatActivity implements SensorEventListene
 
     private SensorManager sensorManager;
     private Sensor orientationSensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la orientación del dispositivo.");
+        TextView sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText(R.string.orientation_desc);
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
             orientationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-            if (orientationSensor == null) {
-                Toast.makeText(this, "Sensor de orientación no disponible", Toast.LENGTH_SHORT).show();
-            }
+
         }
     }
 
@@ -59,7 +56,7 @@ public class Orientation extends AppCompatActivity implements SensorEventListene
             float pitch = event.values[1];
             float roll = event.values[2];
 
-            String data = String.format("Azimut: %.2f°\nInclinación: %.2f°\nRotación: %.2f°", azimuth, pitch, roll);
+            String data = String.format(getString(R.string.orientation_values), azimuth, pitch, roll);
             sensorInfo.setText(data);
         }
     }

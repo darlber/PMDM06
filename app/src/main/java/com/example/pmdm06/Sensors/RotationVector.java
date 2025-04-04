@@ -30,16 +30,13 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
         TextView sensorDescriptionTextView = findViewById(R.id.sensor_description);
         sensorInfoTextView = findViewById(R.id.sensor_info);
 
-        sensorDescriptionTextView.setText("Vector de Rotación del Dispositivo");
+        sensorDescriptionTextView.setText(R.string.rotation_desc);
 
         // Get SensorManager instance
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // Get rotation vector sensor
         rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
-        if (rotationVectorSensor == null) {
-            sensorInfoTextView.setText("Sensor no disponible");
-        }
     }
 
     @Override
@@ -68,7 +65,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
             if (event.values.length >= ROTATION_VECTOR_VALUES_LENGTH) {
                 displaySensorData(event.values);
             } else{
-                sensorInfoTextView.setText("Invalid rotation vector data");
+                sensorInfoTextView.setText(R.string.rotation_err);
             }
 
         }
@@ -90,8 +87,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
 
         // Display the values in the TextView
         String info = String.format(
-                "Rotation Vector:\nX: %.2f\nY: %.2f\nZ: %.2f\n\n" +
-                        "Orientation:\nAzimuth: %.2f°\nPitch: %.2f°\nRoll: %.2f°",
+                getString(R.string.rotation_values),
                 rotationVector[0], rotationVector[1], rotationVector[2],
                 azimuth, pitch, roll
         );

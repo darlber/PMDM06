@@ -26,14 +26,11 @@ public class Proximity extends AppCompatActivity implements SensorEventListener 
         TextView sensorDescription = findViewById(R.id.sensor_description);
         sensorInfo = findViewById(R.id.sensor_info);
 
-        sensorDescription.setText("Mide la distancia de un objeto cercano en centímetros.");
+        sensorDescription.setText(R.string.prox_desc);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         proximitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
 
-        if (proximitySensor == null) {
-            sensorInfo.setText("Sensor no disponible");
-        }
     }
 
     @Override
@@ -57,7 +54,7 @@ public class Proximity extends AppCompatActivity implements SensorEventListener 
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             float distance = event.values[0];
             // Mostramos el valor binario en cm (0 o 5)
-            String proximityStatus = (distance == 0) ? "Cerca (0 cm)" : "Lejos (5 cm)";
+            String proximityStatus = (distance == 0) ? getString(R.string.prox_values) : "Lejos (5 cm)";
             sensorInfo.setText(proximityStatus);
             Log.d("ProximitySensor", "Proximity Status: " + proximityStatus);
         }

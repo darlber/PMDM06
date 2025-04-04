@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,24 +16,22 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
 
     private SensorManager sensorManager;
     private Sensor linearAccelerationSensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la aceleración en los ejes X, Y y Z sin incluir la gravedad.");
+        TextView sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText(R.string.linearAccel_desc);
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
             linearAccelerationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
-            if (linearAccelerationSensor == null) {
-                Toast.makeText(this, "Sensor de aceleración lineal no disponible", Toast.LENGTH_SHORT).show();
-            }
+
         }
     }
 
@@ -59,7 +56,7 @@ public class LinearAcceleration extends AppCompatActivity implements SensorEvent
             float y = event.values[1];
             float z = event.values[2];
 
-            String data = String.format("X: %.2f m/s²\nY: %.2f m/s²\nZ: %.2f m/s²", x, y, z);
+            String data = String.format(getString(R.string.linearAccel_values), x, y, z);
             sensorInfo.setText(data);
         }
     }

@@ -7,7 +7,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,24 +16,22 @@ public class MagneticField extends AppCompatActivity implements SensorEventListe
 
     private SensorManager sensorManager;
     private Sensor magneticFieldSensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Mide la intensidad del campo magnético en los ejes X, Y y Z.");
+        TextView sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText(R.string.magnetic_desc);
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         if (sensorManager != null) {
             magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-            if (magneticFieldSensor == null) {
-                Toast.makeText(this, "Sensor de campo magnético no disponible", Toast.LENGTH_SHORT).show();
-            }
+
         }
     }
 
@@ -59,7 +56,7 @@ public class MagneticField extends AppCompatActivity implements SensorEventListe
             float y = event.values[1];
             float z = event.values[2];
 
-            String data = String.format("Campo Magnético X: %.2f µT\nCampo Magnético Y: %.2f µT\nCampo Magnético Z: %.2f µT", x, y, z);
+            String data = String.format(getString(R.string.magnetic_values), x, y, z);
             sensorInfo.setText(data);
         }
     }

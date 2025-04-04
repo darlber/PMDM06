@@ -15,23 +15,21 @@ public class Pressure extends AppCompatActivity implements SensorEventListener {
 
     private SensorManager sensorManager;
     private Sensor pressureSensor;
-    private TextView sensorInfo, sensorDescription;
+    private TextView sensorInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor);
 
-        sensorDescription = findViewById(R.id.sensor_description);
-        sensorDescription.setText("Este sensor mide la presión atmosférica en hPa.");
+        TextView sensorDescription = findViewById(R.id.sensor_description);
+        sensorDescription.setText(R.string.pressure_desc);
 
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
 
-        if (pressureSensor == null) {
-            sensorInfo.setText("Sensor no disponible en este dispositivo.");
-        }
+
     }
 
     @Override
@@ -53,7 +51,7 @@ public class Pressure extends AppCompatActivity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         float pressure = event.values[0]; // Presión en hPa
-        sensorInfo.setText(String.format("Presión: %.2f hPa", pressure));
+        sensorInfo.setText(String.format(getString(R.string.pressure_values), pressure));
     }
 
     @Override

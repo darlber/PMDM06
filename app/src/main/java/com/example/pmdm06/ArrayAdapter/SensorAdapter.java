@@ -32,10 +32,10 @@ import java.util.List;
 
 public class SensorAdapter extends BaseAdapter {
 
-    private Context context;
-    private List<String> sensorNames;
-    private List<Integer> sensorTypes;
-    private SensorManager sensorManager;
+    private final Context context;
+    private final List<String> sensorNames;
+    private final List<Integer> sensorTypes;
+    private final SensorManager sensorManager;
 
     // Constructor para recibir contexto y las listas de nombres y tipos de sensores
     public SensorAdapter(Context context, List<String> sensorNames, List<Integer> sensorTypes) {
@@ -68,6 +68,7 @@ public class SensorAdapter extends BaseAdapter {
             // Sensor no encontrado, mostrar círculo gris
             sensorStatus.setImageResource(R.drawable.grey_circle);
         }
+        // Configurar el evento de clic en el elemento
         convertView.setOnClickListener(v -> {
             String sensorNameText = sensorNames.get(position);
             Log.d("SensorDebug", "Clicked sensor: " + sensorNameText);
@@ -113,8 +114,6 @@ public class SensorAdapter extends BaseAdapter {
             intent.putExtra("sensor_name", sensorNames.get(position));
             context.startActivity(intent);
         });
-        ;
-
 
         return convertView;
     }

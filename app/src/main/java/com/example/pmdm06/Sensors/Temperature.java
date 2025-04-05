@@ -28,7 +28,6 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
 
         sensorDescription.setText(R.string.temp_desc);
 
-        // Inicializar el SensorManager y obtener el sensor de temperatura
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         temperatureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_TEMPERATURE);
 
@@ -37,7 +36,6 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
     @Override
     protected void onResume() {
         super.onResume();
-        // Registrar el listener para el sensor de temperatura
         if (temperatureSensor != null) {
             sensorManager.registerListener(this, temperatureSensor, SensorManager.SENSOR_DELAY_UI);
         }
@@ -46,7 +44,6 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
     @Override
     protected void onPause() {
         super.onPause();
-        // Desregistrar el listener cuando la actividad esté en pausa
         if (temperatureSensor != null) {
             sensorManager.unregisterListener(this);
         }
@@ -55,7 +52,6 @@ public class Temperature extends AppCompatActivity implements SensorEventListene
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_TEMPERATURE) {
-            // Mostrar la temperatura en la interfaz con 2 decimales
             float temperature = event.values[0];
             sensorInfo.setText(String.format(getString(R.string.temp_values), temperature));
         }

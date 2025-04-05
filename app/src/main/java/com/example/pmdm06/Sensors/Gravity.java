@@ -28,7 +28,6 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
         sensorInfo = findViewById(R.id.sensor_info);
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
-        // Obtener el sensor de gravedad
         gravitySensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
 
     }
@@ -36,7 +35,6 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        // Registrar el listener para el sensor de gravedad
         if (gravitySensor != null) {
             sensorManager.registerListener(this, gravitySensor, SensorManager.SENSOR_DELAY_UI);
         }
@@ -54,12 +52,10 @@ public class Gravity extends AppCompatActivity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_GRAVITY) {
-            // Obtener los valores de gravedad en X, Y y Z
             float gravityX = event.values[0];
             float gravityY = event.values[1];
             float gravityZ = event.values[2];
 
-            // Formatear los valores con 2 decimales y mostrarlos en los TextViews
             String gravityData = String.format(getString(R.string.gravity_values), gravityX, gravityY, gravityZ);
             sensorInfo.setText(gravityData);
         }

@@ -1,12 +1,10 @@
 package com.example.pmdm06;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         addSensor(Sensor.TYPE_GYROSCOPE, "Giroscopio");
         addSensor(Sensor.TYPE_GRAVITY, "Gravedad");
         addSensor(Sensor.TYPE_RELATIVE_HUMIDITY, "Humedad Relativa");
-        addSensor(Sensor.TYPE_LIGHT, "Sensor de Luz Ambiental");
-        addSensor(Sensor.TYPE_AMBIENT_TEMPERATURE, "Temperatura Ambiental");
         addSensor(Sensor.TYPE_ORIENTATION, "Orientación (Obsoleto)");
+        addSensor(Sensor.TYPE_LIGHT, "Sensor de Luz Ambiental");
         addSensor(Sensor.TYPE_PRESSURE, "Sensor de Presión");
         addSensor(Sensor.TYPE_PROXIMITY, "Sensor de Proximidad");
-        addSensor(Sensor.TYPE_TEMPERATURE, "Temperatura del Dispositivo");
+        addSensor(Sensor.TYPE_AMBIENT_TEMPERATURE, "Temperatura Ambiental");
+        addSensor(Sensor.TYPE_TEMPERATURE, "Temperatura del Dispositivo (Obsoleto)");
         addSensor(Sensor.TYPE_ROTATION_VECTOR, "Vector de Rotación");
 
         // Después de definir sensores, verifica cuáles están disponibles
@@ -64,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-        /* LISTADO DE SENSORES mi dispositivo
+        /* LISTADO DE SENSORES en mi dispositivo
     SAR ADUX1050
     sns_tilt
     pedometer

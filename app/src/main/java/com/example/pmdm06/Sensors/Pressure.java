@@ -50,12 +50,11 @@ public class Pressure extends AppCompatActivity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        float pressure = event.values[0]; // Presión en hPa
+        float pressure = event.values[0];
         sensorInfo.setText(String.format(getString(R.string.pressure_values), pressure));
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-        // No es necesario para este sensor
     }
 }

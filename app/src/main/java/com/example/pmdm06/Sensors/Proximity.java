@@ -54,6 +54,7 @@ public class Proximity extends AppCompatActivity implements SensorEventListener 
         if (event.sensor.getType() == Sensor.TYPE_PROXIMITY) {
             float distance = event.values[0];
             // Mostramos el valor binario en cm (0 o 5)
+            //en mi tlf, el valor es 0 o 5, no mide la distancia en cm
             String proximityStatus = (distance == 0) ? getString(R.string.prox_values) : "Lejos (5 cm)";
             sensorInfo.setText(proximityStatus);
             Log.d("ProximitySensor", "Proximity Status: " + proximityStatus);

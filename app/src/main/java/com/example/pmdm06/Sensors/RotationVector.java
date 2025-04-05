@@ -17,9 +17,9 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
     private SensorManager sensorManager;
     private Sensor rotationVectorSensor;
     private TextView sensorInfoTextView;
-    private static final int ROTATION_VECTOR_VALUES_LENGTH = 3; // Expected length of rotation vector values.
-    private static final int ORIENTATION_VALUES_LENGTH = 3; // Expected length of orientation values.
-    private static final int ROTATION_MATRIX_VALUES_LENGTH = 9; // Expected length of rotation matrix values.
+    private static final int ROTATION_VECTOR_VALUES_LENGTH = 3; // Longitud esperada de los valores del vector de rotación.
+    private static final int ORIENTATION_VALUES_LENGTH = 3; // Longitud esperada de los valores de orientación.
+    private static final int ROTATION_MATRIX_VALUES_LENGTH = 9; // Longitud esperada de la matriz de rotación.
 
 
     @Override
@@ -32,9 +32,8 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
 
         sensorDescriptionTextView.setText(R.string.rotation_desc);
 
-        // Get SensorManager instance
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        // Get rotation vector sensor
+
         rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 
     }
@@ -42,9 +41,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
     @Override
     protected void onResume() {
         super.onResume();
-        // Register the listener for the rotation vector sensor
         if (rotationVectorSensor != null) {
-            // Using SENSOR_DELAY_NORMAL is generally recommended unless high precision is needed.
             sensorManager.registerListener(this, rotationVectorSensor, SensorManager.SENSOR_DELAY_UI);
         }
     }
@@ -52,7 +49,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the listener when the activity is paused
+
         if (rotationVectorSensor != null) {
             sensorManager.unregisterListener(this);
         }
@@ -61,7 +58,7 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-            // Check that the event.values has the expected length
+
             if (event.values.length >= ROTATION_VECTOR_VALUES_LENGTH) {
                 displaySensorData(event.values);
             } else{
@@ -72,20 +69,19 @@ public class RotationVector extends AppCompatActivity implements SensorEventList
     }
 
     private void displaySensorData(float[] rotationVector) {
-        // Convert rotation vector to rotation matrix
+        // convierte el vector de rotación a una matriz de rotación
         float[] rotationMatrix = new float[ROTATION_MATRIX_VALUES_LENGTH];
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector);
 
-        // Convert rotation matrix to orientation (azimuth, pitch, roll) in radians
+        // convierte la matriz de rotación a valores de orientación
         float[] orientation = new float[ORIENTATION_VALUES_LENGTH];
         SensorManager.getOrientation(rotationMatrix, orientation);
 
-        // Convert radians to degrees for better readability
+        // Convierte los valores de orientación a grados
         float azimuth = (float) Math.toDegrees(orientation[0]);
         float pitch = (float) Math.toDegrees(orientation[1]);
         float roll = (float) Math.toDegrees(orientation[2]);
 
-        // Display the values in the TextView
         String info = String.format(
                 getString(R.string.rotation_values),
                 rotationVector[0], rotationVector[1], rotationVector[2],

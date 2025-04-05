@@ -6,5 +6,5 @@
 
     <color name="background">#FFFFFFFF</color>
     <color name="textColor">#FF000000</color>
-    <color name="cardBackground">#CCF5F5F5</color>
+    <color name="cardBackground">#F5F5F5</color>
 </resources>

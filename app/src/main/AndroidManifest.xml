@@ -13,119 +13,70 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PMDM06"
         tools:targetApi="31">
+
+        <!-- Actividad principal (sin fullscreen si no lo necesitas) -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Todas las actividades de sensores con FullScreenTheme -->
         <activity
             android:name=".Sensors.LinearAcceleration"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Gravity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Accelerometer"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.MagneticField"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Gyroscope"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.RelativeHumidity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.LightSensor"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.AmbientTemperature"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Orientation"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Pressure"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Proximity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Sensors.Temperature"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Sensors.RotationVector"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
+        <activity
+            android:name=".Sensors.RotationVector"
+            android:exported="true"
+            android:theme="@style/FullScreenTheme" />
     </application>
-
 </manifest>

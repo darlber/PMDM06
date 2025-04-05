@@ -1,10 +1,12 @@
 package com.example.pmdm06;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,10 +15,6 @@ import com.example.pmdm06.ArrayAdapter.SensorAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/*
-TODO más bonito
- */
 
 public class MainActivity extends AppCompatActivity {
 

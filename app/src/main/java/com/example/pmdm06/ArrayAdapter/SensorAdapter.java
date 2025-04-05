@@ -45,6 +45,7 @@ public class SensorAdapter extends BaseAdapter {
         this.sensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
